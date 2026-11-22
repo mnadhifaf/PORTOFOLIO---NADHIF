@@ -1,0 +1,1108 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Muhammad Nadhif Al-Fatih — Informatics &amp; Creative Visuals</title>
+<!-- Google Fonts Preconnect & Load -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Caveat:wght@600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#F8F9FA',
+            'canvas-pure': '#FFFFFF',
+            ink: '#0F1115',
+            'ink-soft': 'rgba(15, 17, 21, 0.65)',
+            'panel-dark': '#16181D',
+            'panel-header': '#1F232B',
+            'panel-border': 'rgba(255, 255, 255, 0.12)',
+            accent: 'var(--accent, #0057FF)',
+            'pink-frame': '#F4A8E8'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Anton"', 'sans-serif'],
+            script: ['"Caveat"', 'cursive'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          boxShadow: {
+            'custom-card': '0 24px 48px -12px rgba(15, 17, 21, 0.35)',
+            'accent-glow': '0 12px 30px rgba(0, 87, 255, 0.28)',
+            'hard-offset': '4px 4px 0px #0F1115'
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="design-tokens">
+    :root {
+      --canvas: #F8F9FA;
+      --canvas-pure: #FFFFFF;
+      --ink: #0F1115;
+      --ink-soft: rgba(15, 17, 21, 0.65);
+      --panel-dark: #16181D;
+      --panel-header: #1F232B;
+      --panel-border: rgba(255, 255, 255, 0.12);
+      --accent: #0057FF;
+      --accent-glow: rgba(0, 87, 255, 0.32);
+      --pink-frame: #F4A8E8;
+      --grid-line: rgba(15, 17, 21, 0.055);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  </style>
+<style data-purpose="blueprint-grid-and-decorations">
+    /* 32px Technical Blueprint Grid */
+    body {
+      background-color: var(--canvas);
+      background-image: 
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
+        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.8) 0%, rgba(248, 249, 250, 0.2) 100%);
+      background-size: 32px 32px, 32px 32px, 100% 100%;
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Vector Registration Elements */
+    .crosshair-mark::before,
+    .crosshair-mark::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(15, 17, 21, 0.28);
+    }
+    .crosshair-mark::before {
+      width: 12px;
+      height: 1.5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .crosshair-mark::after {
+      width: 1.5px;
+      height: 12px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Smooth transition for active layer changes */
+    .theme-transition {
+      transition: color 0.4s var(--ease), background-color 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+  </style>
+<style data-purpose="floating-hero-composition">
+    /* Hero Section Parallax Layer Positioning */
+    .hero-collage-stage {
+      min-height: 820px;
+      position: relative;
+    }
+
+    /* Gradient Torso Fade for Cutout blending with technical grid */
+    .portrait-mask-fade {
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 68%, rgba(0,0,0,0) 98%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 68%, rgba(0,0,0,0) 98%);
+    }
+
+    /* Tilted Pink Frame Depth */
+    .tilted-preview-frame {
+      transform: rotate(7deg);
+      box-shadow: 0 25px 50px -12px rgba(15, 17, 21, 0.25);
+    }
+
+    /* Software Squircles Floating Physics */
+    .squircle-badge {
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .squircle-badge:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.32);
+    }
+
+    /* Vector Bounding Box with Grips */
+    .vector-anchor {
+      width: 7px;
+      height: 7px;
+      background: white;
+      border: 1.5px solid #0F1115;
+      position: absolute;
+    }
+
+    /* Layer Selection Interactive styling */
+    .layer-row.active {
+      background: rgba(0, 87, 255, 0.15);
+      border-color: var(--accent);
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="antialiased selection:bg-[#0057FF] selection:text-white theme-transition" bis_status="ok">
+<!-- BEGIN: Background Technical Registration Marks -->
+<div aria-hidden="true" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" data-purpose="registration-marks">
+<div class="absolute top-24 left-8 crosshair-mark w-4 h-4"></div>
+<div class="absolute top-72 right-10 crosshair-mark w-4 h-4"></div>
+<div class="absolute top-[48%] left-6 w-2 h-2 bg-[#0057FF]"></div>
+<div class="absolute top-[82%] right-12 w-2 h-2 bg-[#0057FF]"></div>
+<!-- 3x4 Dot Matrix Indicator -->
+<div class="absolute top-28 right-24 grid grid-cols-3 gap-1.5 opacity-25">
+<span class="w-1 h-1 rounded-full bg-slate-900"></span><span class="w-1 h-1 rounded-full bg-slate-900"></span><span class="w-1 h-1 rounded-full bg-slate-900"></span>
+<span class="w-1 h-1 rounded-full bg-slate-900"></span><span class="w-1 h-1 rounded-full bg-slate-900"></span><span class="w-1 h-1 rounded-full bg-slate-900"></span>
+<span class="w-1 h-1 rounded-full bg-slate-900"></span><span class="w-1 h-1 rounded-full bg-slate-900"></span><span class="w-1 h-1 rounded-full bg-slate-900"></span>
+<span class="w-1 h-1 rounded-full bg-slate-900"></span><span class="w-1 h-1 rounded-full bg-slate-900"></span><span class="w-1 h-1 rounded-full bg-slate-900"></span>
+</div>
+</div>
+<!-- END: Background Technical Registration Marks -->
+<!-- BEGIN: MicroHeader -->
+<header class="relative z-40 border-b border-black/5 bg-[#F8F9FA]/80 backdrop-blur-md" data-purpose="top-navigation">
+<div class="max-w-[1400px] mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+<!-- Left Branding with Cobalt Square -->
+<div class="flex items-center gap-3">
+<span class="w-2.5 h-2.5 bg-[#0057FF] shrink-0 theme-transition" id="header-badge"></span>
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold tracking-wider text-slate-900 uppercase">INFORMATICS &amp; VFX</span>
+<span class="text-[10px] font-mono tracking-widest text-slate-500 uppercase">CREATIVE DEVELOPER</span>
+</div>
+</div>
+<!-- Center Navigation Links -->
+<nav class="hidden md:flex items-center gap-8 font-mono text-xs font-medium tracking-wide text-slate-700">
+<a class="hover:text-[#0057FF] transition-colors" href="#about">ABOUT</a>
+<a class="hover:text-[#0057FF] transition-colors flex items-center gap-1.5" href="#project">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>NEURO DAWN
+        </a>
+<a class="hover:text-[#0057FF] transition-colors" href="#skills">SKILLS</a>
+<a class="hover:text-[#0057FF] transition-colors" href="#experience">EXPERIENCE</a>
+<a class="hover:text-[#0057FF] transition-colors" href="#contact">CONNECT</a>
+</nav>
+<!-- Right Location Metadata -->
+<div class="flex items-center gap-3 font-mono text-xs text-right">
+<div>
+<p class="font-bold text-slate-900">PALEMBANG • JAKARTA</p>
+<p class="text-[10px] text-slate-500 font-mono tracking-tighter">IT-PLN '26 +</p>
+</div>
+<span class="text-slate-400 font-bold text-sm">+</span>
+</div>
+</div>
+</header>
+<!-- END: MicroHeader -->
+<!-- BEGIN: HeroStage -->
+<section class="relative min-h-[calc(100svh-65px)] flex flex-col justify-between overflow-hidden" data-purpose="hero-workspace-stage">
+<!-- Workspace Canvas Center Area -->
+<div class="relative flex-1 max-w-[1360px] w-full mx-auto px-4 pt-6 pb-12 hero-collage-stage flex items-center justify-center" id="hero-stage">
+<!-- LAYER Z-1: MASSIVE CENTER & TOP TYPOGRAPHY -->
+<div class="absolute inset-x-0 top-3 text-center pointer-events-none select-none z-10 flex flex-col items-center">
+<span class="font-script text-5xl sm:text-6xl md:text-8xl text-[#0057FF] -rotate-3 transform -mb-4 sm:-mb-6 transition-all duration-300 drop-shadow-sm font-bold" id="hero-script-tag">
+          Informatics &amp;
+        </span>
+<h1 class="font-display uppercase text-7xl sm:text-9xl md:text-[14rem] tracking-tight leading-[0.82] text-[#0F1115]">
+          CREATOR
+        </h1>
+<!-- Sub-headline aligned relative -->
+<p class="mt-4 font-mono text-[11px] sm:text-xs tracking-widest text-slate-800 uppercase font-semibold">
+          BUILDING INTERACTIVE SYSTEMS, <span class="text-[#0057FF] font-black underline decoration-2 underline-offset-4 theme-transition" id="hero-tagline-highlight">SHAPING</span> DIGITAL VISUALS.
+        </p>
+</div>
+<!-- LAYER Z-2: TILTED SECONDARY VIEWPORT FRAME (Pastel Pink Frame behind cutout) -->
+<div class="absolute right-[8%] sm:right-[14%] top-[22%] sm:top-[20%] w-[270px] sm:w-[380px] aspect-[4/3] bg-[#F4A8E8] rounded-2xl p-3 tilted-preview-frame pointer-events-none z-15 hidden sm:block" data-parallax="14" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<div class="w-full h-full bg-[#16181D] rounded-xl overflow-hidden flex flex-col border border-white/20 shadow-inner">
+<!-- Mini macOS Titlebar -->
+<div class="bg-[#1F232B] px-3 py-2 flex items-center gap-1.5 border-b border-white/10">
+<span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#27C93F]"></span>
+<span class="ml-2 font-mono text-[10px] text-slate-400">workspace_timeline.vfx</span>
+</div>
+<!-- Code/Keyframe Mock Visualization -->
+<div class="p-3 text-[11px] font-mono text-slate-300 space-y-1.5 leading-relaxed opacity-90 overflow-hidden">
+<p><span class="text-blue-400">&lt;canvas</span> <span class="text-pink-400">engine</span>=<span class="text-amber-300">"neuro_vfx"</span>&gt;</p>
+<p class="pl-4 text-emerald-400">&lt;track type="keyframe" id="01" fps="60"&gt;</p>
+<p class="pl-8 text-slate-400">// Substantia nigra dopamine stimulus</p>
+<p class="pl-8 text-sky-300">triggerPulse(2.4mA, target: "brainwave");</p>
+<p class="pl-4 text-emerald-400">&lt;/track&gt;</p>
+<p><span class="text-blue-400">&lt;/canvas&gt;</span></p>
+<!-- Timeline track bar -->
+<div class="mt-3 pt-2 border-t border-white/10 flex items-center gap-2">
+<span class="w-2 h-2 bg-blue-500 rounded-full animate-ping"></span>
+<div class="h-1.5 flex-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-blue-500 to-pink-500 w-3/4"></div>
+</div>
+<span class="text-[9px] text-slate-400 font-mono">00:04:18:24</span>
+</div>
+</div>
+</div>
+</div>
+<!-- LAYER Z-3: CENTER PORTRAIT CUTOUT (Editorial Monochromatic Silhouette) -->
+<div class="relative z-20 flex items-end justify-center w-full max-w-[580px] h-[550px] sm:h-[680px] pointer-events-none mt-16 sm:mt-12" data-parallax="6" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<!-- Developer Cutout Visual with Monochrome Filter & Bottom Gradient Fade -->
+<div class="relative w-full h-full flex items-end justify-center portrait-mask-fade">
+<img alt="Muhammad Nadhif Al-Fatih Workspace Cutout" class="max-h-full w-auto object-contain filter grayscale contrast-125 brightness-95 drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYztu7R1eHn0EXTxk4hRzxtSnoENZvRFkkTt_PIRbchHdL7KUxVWceDkyMtYc6t3l5U9QwU0NBq3sy5VDzLi_PNaZDIL86O0SrnIFe28zgdGhazCebqUNJP_5LYnATpPLDOa7c-XLakEsqv_kUIFEuae7KIudfc_BlUmYqCgtfK30YGnLlRPvlx8RPv3YIUnni7g23e-a1q4R4ilqn7PyG8ydiRWIj95kkyTHU1CuFIF7CvT2qNNQ1">
+</div>
+</div>
+<!-- LAYER Z-4: FLOATING SOFTWARE TILES & TOOLBARS -->
+<!-- Floating Tile 1: After Effects (Ae) Left -->
+<div class="absolute left-4 sm:left-[5vw] top-[30%] sm:top-[28%] z-30 squircle-badge" data-parallax="18" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#001E36] border-2 border-[#31A8FF] flex flex-col items-center justify-center text-white shadow-[0_10px_25px_rgba(0,30,54,0.6)] cursor-pointer group">
+<span class="font-display text-4xl sm:text-5xl text-[#31A8FF] group-hover:scale-110 transition-transform">Ae</span>
+<span class="font-mono text-[9px] text-sky-200 mt-1 uppercase tracking-tighter">After Effects</span>
+</div>
+<!-- Hand-drawn style label and arrow -->
+<div class="absolute -top-7 -left-4 pointer-events-none select-none flex items-center gap-1">
+<span class="font-script text-xl font-bold text-slate-800 rotate-[-8deg]">Adobe After Effects</span>
+<svg class="w-6 h-6 text-slate-800 -rotate-12 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Floating Tile 2: Premiere Pro (Pr) Left Lower -->
+<div class="absolute left-6 sm:left-[4vw] top-[48%] sm:top-[46%] z-30 squircle-badge" data-parallax="22" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<div class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-2xl bg-[#140826] border-2 border-[#EA77FF] flex flex-col items-center justify-center text-white shadow-[0_10px_25px_rgba(20,8,38,0.5)] cursor-pointer group">
+<span class="font-display text-4xl sm:text-5xl text-[#EA77FF] group-hover:scale-110 transition-transform">Pr</span>
+<span class="font-mono text-[9px] text-fuchsia-200 mt-0.5 uppercase tracking-tighter">Premiere Pro</span>
+</div>
+<div class="absolute -bottom-6 left-1 pointer-events-none select-none">
+<span class="font-script text-lg font-bold text-slate-800 rotate-6 inline-block">Video Editor</span>
+</div>
+</div>
+<!-- Floating Tile 3: Vertical Tool Dock on Right (Echoing https://lh3.googleusercontent.com/aida-public/AB6AXuA98Yd-rcGwEQYImjX1v5rhgZzzZNJMAn2ZzxjGUvXWW2ttyn2Ph3gBh0y43AXMHswI8ZMbyTVlRznEVtMGcxY-nnyHFGOPrw7hNtYMJccrZ9eu8pv8rstpzJqddyWOGXKkDtLzB4gPLFi4xQlM4gXPPNJDx8qGF4xvPjG4V4Qy-eSup1YHh2AJpFEi4kAP3JotxoZzkDyu2Z5W6JxReVucDv9cK3Y9roj-EfFrEAg9qdFIUKLgE_5d) -->
+<div class="absolute right-4 sm:right-[5vw] top-[14%] sm:top-[16%] z-30 hidden sm:flex flex-col items-center gap-3 w-12 py-4 bg-[#16181D] rounded-xl border border-white/10 shadow-2xl rotate-6 transform hover:rotate-0 transition-transform duration-300" data-parallax="16" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<!-- SVG Vector Tools -->
+<button class="text-slate-400 hover:text-white transition-colors" title="Select Pointer"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 3a.5.5 0 00-.5.5v12.5a.5.5 0 00.8.4l3.6-2.7 2.1 4.5a.5.5 0 00.9-.4l-2.1-4.5 4.5-.4a.5.5 0 00.3-.8L5.5 3z"></path></svg></button>
+<button class="text-blue-400 hover:text-white transition-colors" title="Pen Tool"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg></button>
+<button class="text-slate-400 hover:text-white transition-colors" title="Crop"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2v14a2 2 0 002 2h14M2 6h14a2 2 0 012 2v14"></path></svg></button>
+<button class="text-slate-400 hover:text-white transition-colors" title="Code Brackets"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg></button>
+<button class="text-slate-400 hover:text-white transition-colors" title="Text Tool"><span class="font-serif font-black text-sm">T</span></button>
+<button class="text-slate-400 hover:text-white transition-colors" title="Hand Tool"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 11V7a2 2 0 014 0v4m0 0V5a2 2 0 014 0v6m0 0V7a2 2 0 014 0v9a5 5 0 01-10 0v-5z"></path></svg></button>
+<button class="text-slate-400 hover:text-white transition-colors" title="Zoom"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+<div class="w-5 h-5 border border-white/30 bg-black mt-2"></div>
+</div>
+<!-- Floating Blue Status Pill -->
+<div class="absolute right-[4vw] sm:right-[10vw] top-[54%] sm:top-[56%] z-30 -rotate-3 transform" data-parallax="12" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<div class="px-3.5 py-1.5 rounded bg-[#0057FF] text-white font-mono text-[10px] sm:text-xs font-bold tracking-wider shadow-lg flex items-center gap-1.5 theme-transition" id="status-pill">
+<span class="w-2 h-2 rounded-full bg-amber-300 animate-pulse"></span>
+<span>GOLD MEDALIST • IIIEX 2025</span>
+</div>
+</div>
+<!-- LAYER Z-5: FOREGROUND DARK UI WINDOWS & COLLAGE PANELS -->
+<!-- Panel 1: Bottom-Left "Layers" Switcher Window -->
+<div class="absolute left-2 sm:left-[3vw] bottom-4 sm:bottom-6 z-30 w-[240px] sm:w-[260px] bg-[#16181D] text-slate-100 rounded-xl border border-white/10 shadow-custom-card overflow-hidden" data-parallax="8" data-purpose="layers-panel" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<div class="bg-[#1F232B] px-3.5 py-2.5 flex items-center justify-between border-b border-white/10">
+<div class="flex items-center gap-1.5">
+<span class="font-mono text-xs font-bold tracking-wide text-slate-200">Layers</span>
+</div>
+<span class="font-mono text-[10px] text-slate-400">Ctrl + L</span>
+</div>
+<!-- Search bar inside panel -->
+<div class="p-2 border-b border-white/5 bg-[#121418]">
+<div class="px-2 py-1 bg-black/40 rounded flex items-center gap-2 text-[10px] text-slate-400 font-mono">
+<svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+<span>Search stack layers...</span>
+</div>
+</div>
+<!-- Interactive Layer Rows -->
+<div class="p-2 space-y-1 text-xs font-mono select-none" id="layer-selector-container">
+<button class="layer-row active w-full flex items-center justify-between px-2.5 py-1.5 rounded border border-transparent text-left hover:bg-white/5 transition-all" data-color="#0057FF" data-layer="web" data-script="Informatics &amp;" data-tagline="BUILDING INTERACTIVE SYSTEMS">
+<div class="flex items-center gap-2">
+<span class="text-blue-400">👁</span>
+<span class="w-2.5 h-2.5 rounded-sm bg-[#0057FF]"></span>
+<span class="text-slate-200 font-sans font-medium text-[11px]">Web &amp; HTML</span>
+</div>
+<span class="text-[9px] text-slate-500">v3.4</span>
+</button>
+<button class="layer-row w-full flex items-center justify-between px-2.5 py-1.5 rounded border border-transparent text-left hover:bg-white/5 transition-all" data-color="#2563EB" data-layer="ai" data-script="Artificial" data-tagline="ENGINEERING INTELLIGENT SYSTEMS">
+<div class="flex items-center gap-2">
+<span class="text-slate-400">👁</span>
+<span class="w-2.5 h-2.5 rounded-sm bg-[#2563EB]"></span>
+<span class="text-slate-200 font-sans font-medium text-[11px]">Artificial Intelligence</span>
+</div>
+<span class="text-[9px] text-slate-500">ML/DL</span>
+</button>
+<button class="layer-row w-full flex items-center justify-between px-2.5 py-1.5 rounded border border-transparent text-left hover:bg-white/5 transition-all" data-color="#0284C7" data-layer="cp" data-script="Competitive" data-tagline="SOLVING COMPLEX ALGORITHMS">
+<div class="flex items-center gap-2">
+<span class="text-slate-400">👁</span>
+<span class="w-2.5 h-2.5 rounded-sm bg-[#0284C7]"></span>
+<span class="text-slate-200 font-sans font-medium text-[11px]">Competitive Coding</span>
+</div>
+<span class="text-[9px] text-slate-500">C++</span>
+</button>
+<button class="layer-row w-full flex items-center justify-between px-2.5 py-1.5 rounded border border-transparent text-left hover:bg-white/5 transition-all" data-color="#7C3AED" data-layer="vfx" data-script="Cinematic" data-tagline="SHAPING VISUAL EFFECTS &amp; 3D">
+<div class="flex items-center gap-2">
+<span class="text-slate-400">👁</span>
+<span class="w-2.5 h-2.5 rounded-sm bg-[#7C3AED]"></span>
+<span class="text-slate-200 font-sans font-medium text-[11px]">VFX &amp; 3D Elements</span>
+</div>
+<span class="text-[9px] text-slate-500">Ae/Pr</span>
+</button>
+<button class="layer-row w-full flex items-center justify-between px-2.5 py-1.5 rounded border border-transparent text-left hover:bg-white/5 transition-all" data-color="#059669" data-layer="biotech" data-script="Biotech &amp;" data-tagline="NEURO DAWN GOLD MEDALIST">
+<div class="flex items-center gap-2">
+<span class="text-slate-400">👁</span>
+<span class="w-2.5 h-2.5 rounded-sm bg-[#059669]"></span>
+<span class="text-slate-200 font-sans font-medium text-[11px]">Neuro-Tech Research</span>
+</div>
+<span class="text-[9px] text-emerald-400">GOLD</span>
+</button>
+</div>
+</div>
+<!-- Panel 2: Bottom-Center "WHAT I DO" Card + Circuit Node Connector -->
+<div class="absolute left-[33%] sm:left-[30%] bottom-6 sm:bottom-8 z-30 hidden lg:block w-[220px] bg-[#16181D] text-white rounded-xl p-3.5 border border-white/10 shadow-custom-card" data-parallax="10" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<div class="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
+<span class="font-mono text-[10px] font-bold text-sky-400 tracking-wider">WHAT I DO</span>
+<span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+</div>
+<ul class="space-y-1.5 text-xs text-slate-300 font-mono text-[11px]">
+<li class="flex items-center gap-2">
+<span class="w-2 h-2 bg-[#0057FF] rounded-sm shrink-0"></span>Web Architecture (HTML)
+          </li>
+<li class="flex items-center gap-2">
+<span class="w-2 h-2 bg-[#0057FF] rounded-sm shrink-0"></span>AI &amp; Neural Systems
+          </li>
+<li class="flex items-center gap-2">
+<span class="w-2 h-2 bg-[#0057FF] rounded-sm shrink-0"></span>Competitive Coding
+          </li>
+<li class="flex items-center gap-2">
+<span class="w-2 h-2 bg-[#0057FF] rounded-sm shrink-0"></span>After Effects VFX
+          </li>
+<li class="flex items-center gap-2">
+<span class="w-2 h-2 bg-[#0057FF] rounded-sm shrink-0"></span>Premiere Video Editing
+          </li>
+</ul>
+<!-- 90-degree decorative circuit wire to right panel -->
+<div class="absolute top-1/2 -right-10 w-10 h-[2px] bg-[#0057FF] pointer-events-none">
+<span class="absolute -right-1 -top-1 w-2.5 h-2.5 rounded-full bg-[#0057FF] animate-ping"></span>
+</div>
+</div>
+<!-- Panel 3: Bottom-Right "CTRL + CREATE" Window -->
+<div class="absolute right-2 sm:right-[3vw] bottom-4 sm:bottom-6 z-30 w-[280px] sm:w-[320px] bg-[#16181D] text-slate-100 rounded-xl border border-white/10 shadow-custom-card overflow-hidden" data-parallax="6" data-purpose="create-window" style="transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform: translate3d(0px, 0px, 0px);">
+<!-- Window Title Bar with macOS 3 Dots -->
+<div class="bg-[#1F232B] px-3 py-2 flex items-center justify-between border-b border-white/10">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#27C93F]"></span>
+</div>
+<span class="font-mono text-[10px] font-bold tracking-widest text-[#0057FF] bg-[#0057FF]/10 px-2 py-0.5 rounded border border-[#0057FF]/30 theme-transition" id="ctrl-create-title">
+            CTRL + CREATE
+          </span>
+</div>
+<div class="p-4 sm:p-5 relative">
+<p class="text-xs sm:text-[13px] leading-relaxed text-slate-300 font-sans">
+            You don't need a degree to design the future. Just curiosity, consistency &amp; the courage to keep creating.
+          </p>
+<div class="mt-3 pt-3 border-t border-white/10 font-bold text-xs space-y-0.5 text-[#0057FF] theme-transition" id="manifesto-tags">
+<p>Code with Logic.</p>
+<p>Design with Impact.</p>
+<p>Keep Innovating.</p>
+</div>
+<!-- White cursor arrow pointer graphic at bottom-right corner -->
+<div class="absolute bottom-2 right-2 select-none pointer-events-none">
+<svg class="w-5 h-5 text-white filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] -rotate-45" fill="currentColor" viewBox="0 0 20 20">
+<path d="M5.5 3a.5.5 0 00-.5.5v12.5a.5.5 0 00.8.4l3.6-2.7 2.1 4.5a.5.5 0 00.9-.4l-2.1-4.5 4.5-.4a.5.5 0 00.3-.8L5.5 3z"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Vector Bounding Box with Grips (Logic is Thinking Made Visual) -->
+<div class="absolute left-4 sm:left-[3vw] -bottom-1 sm:bottom-0 z-30 hidden sm:flex items-center gap-2 p-2 bg-white/90 backdrop-blur-sm border border-slate-900 rounded shadow-sm text-[10px] font-mono select-none" data-purpose="vector-badge">
+<span class="vector-anchor -top-1 -left-1"></span>
+<span class="vector-anchor -top-1 -right-1"></span>
+<span class="vector-anchor -bottom-1 -left-1"></span>
+<span class="vector-anchor -bottom-1 -right-1"></span>
+<svg class="w-3.5 h-3.5 text-slate-900 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"></path></svg>
+<span class="text-slate-800 font-bold uppercase tracking-tight">
+          LOGIC IS THINKING MADE <span class="text-[#0057FF] theme-transition">VISUAL.</span>
+</span>
+</div>
+</div>
+<!-- BEGIN: Hero Bottom 4-Column Status Strip -->
+<div class="relative z-30 border-t border-slate-900/10 bg-[#F8F9FA]/95 backdrop-blur-md" data-purpose="bottom-status-strip">
+<div class="max-w-[1400px] mx-auto px-5 sm:px-8 py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+<!-- Col 1: Contact Direct -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"></path></svg>
+</div>
+<div>
+<p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">Let's Connect</p>
+<a class="text-xs sm:text-sm font-bold text-slate-900 hover:text-[#0057FF] transition-colors" href="https://wa.me/6282289480199" rel="noopener" target="_blank">
+              +62 822-8948-0199
+            </a>
+</div>
+</div>
+<!-- Col 2: Education & Specialization Context -->
+<div class="border-l-0 sm:border-l border-slate-900/10 sm:pl-4">
+<p class="text-[11px] text-slate-600 leading-snug">
+            Informatics Undergraduate at <span class="font-bold text-slate-900">Institut Teknologi PLN</span> — building web systems, AI models &amp; VFX.
+          </p>
+</div>
+<!-- Col 3: Collaboration Status -->
+<div class="border-l-0 lg:border-l border-slate-900/10 lg:pl-4">
+<p class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">Available for</p>
+<p class="text-xs sm:text-sm font-bold text-[#0057FF] theme-transition">
+            Tech Collabs &amp; Freelance
+          </p>
+</div>
+<!-- Col 4: Monogram & Identity -->
+<div class="flex items-center justify-between border-l-0 lg:border-l border-slate-900/10 lg:pl-4">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 text-white font-display text-lg flex items-center justify-center shadow-sm">
+              NA
+            </div>
+<div>
+<p class="text-xs font-bold text-slate-900 leading-none">nadhif.alfatih</p>
+<span class="text-[10px] font-mono text-slate-500">Student &amp; Creator</span>
+</div>
+</div>
+<span class="w-2.5 h-2.5 bg-[#0057FF] shrink-0"></span>
+</div>
+</div>
+</div>
+<!-- END: Hero Bottom 4-Column Status Strip -->
+</section>
+<!-- END: HeroStage -->
+<!-- BEGIN: SectionAbout (Profile Inspector & Academic Log) -->
+<section class="py-24 px-5 sm:px-8 border-t border-slate-900/10 relative" data-purpose="about-section" id="about">
+<div class="max-w-[1280px] mx-auto">
+<!-- Section Header -->
+<div class="mb-14">
+<span class="font-mono text-xs font-bold tracking-widest text-[#0057FF] uppercase theme-transition">[ 01 // PROFILE_INSPECTOR ]</span>
+<h2 class="font-display uppercase text-5xl sm:text-7xl text-slate-900 mt-2 tracking-tight">
+          BUILDING AT THE INTERSECTION OF <br class="hidden sm:inline">
+<span class="font-script lowercase font-bold text-[#0057FF] theme-transition text-6xl sm:text-8xl">code &amp; visuals</span>
+</h2>
+</div>
+<!-- Two Column Layout: Bio Summary vs Education Log UI Window -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Left Column: Editorial Bio & Quick Metric Highlights -->
+<div class="lg:col-span-6 space-y-6">
+<p class="text-base sm:text-lg text-slate-700 leading-relaxed font-sans">
+            Graduate of <span class="font-bold text-slate-900">MAN Insan Cendekia OKI</span> (Health &amp; Sociology track) currently enrolled as an Informatics Engineering undergraduate at <span class="font-bold text-slate-900">Institut Teknologi PLN</span>.
+          </p>
+<p class="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+            Passionate about foundational web architecture (semantic HTML), Artificial Intelligence, competitive programming algorithms, and high-impact visual storytelling via Adobe After Effects &amp; Premiere Pro.
+          </p>
+<!-- 3 Quick Metric Cards with Hard Offset Shadow -->
+<div class="grid grid-cols-3 gap-3 sm:gap-4 pt-4">
+<div class="p-4 bg-white border border-slate-900 rounded-lg shadow-hard-offset">
+<span class="font-display text-2xl sm:text-3xl text-slate-900">IT-PLN</span>
+<p class="font-mono text-[10px] text-slate-500 uppercase mt-1">Informatics Undergrad</p>
+</div>
+<div class="p-4 bg-white border border-slate-900 rounded-lg shadow-hard-offset">
+<span class="font-display text-2xl sm:text-3xl text-[#0057FF] theme-transition">GOLD</span>
+<p class="font-mono text-[10px] text-slate-500 uppercase mt-1">IIIEX International '25</p>
+</div>
+<div class="p-4 bg-white border border-slate-900 rounded-lg shadow-hard-offset">
+<span class="font-display text-2xl sm:text-3xl text-slate-900">5+ ROLES</span>
+<p class="font-mono text-[10px] text-slate-500 uppercase mt-1">Leadership &amp; Org</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Dark macOS UI Window "education_history.json" -->
+<div class="lg:col-span-6 bg-[#16181D] rounded-xl border border-white/10 shadow-custom-card overflow-hidden">
+<div class="bg-[#1F232B] px-4 py-3 flex items-center justify-between border-b border-white/10">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
+<span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+<span class="w-3 h-3 rounded-full bg-[#27C93F]"></span>
+<span class="ml-2 font-mono text-xs text-slate-300">education_history.json</span>
+</div>
+<span class="font-mono text-[10px] text-emerald-400">STATUS: VERIFIED</span>
+</div>
+<!-- Vertical Timeline with Glowing Nodes -->
+<div class="p-6 sm:p-8 space-y-6">
+<!-- Timeline Item 1 -->
+<div class="relative pl-6 border-l-2 border-[#0057FF]">
+<span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-[#0057FF] ring-4 ring-[#0057FF]/30"></span>
+<div class="flex items-center justify-between text-xs font-mono text-sky-400 mb-1">
+<span>2026 – Present</span>
+<span class="text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded text-[10px]">Active</span>
+</div>
+<h3 class="font-bold text-white text-base">Institut Teknologi PLN</h3>
+<p class="text-xs text-slate-400 mt-1">Mahasiswa Teknik Informatika — Deep dive into competitive coding, AI systems, and interactive web technologies.</p>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-6 border-l-2 border-slate-700">
+<span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-slate-500"></span>
+<div class="text-xs font-mono text-slate-400 mb-1">2023 – 2026</div>
+<h3 class="font-bold text-white text-base">MAN Insan Cendekia OKI</h3>
+<p class="text-xs text-slate-400 mt-1">Peminatan Kesehatan - Sosiologi. Served as Class President (6 months) &amp; Vice Class President. Active in national seminars, STEM competitions, and dormitory leadership.</p>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-6 border-l-2 border-slate-700">
+<span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-slate-500"></span>
+<div class="text-xs font-mono text-slate-400 mb-1">2020 – 2023</div>
+<h3 class="font-bold text-white text-base">MTsN 2 Kota Palembang</h3>
+<p class="text-xs text-slate-400 mt-1">Pendidikan Menengah Pertama (Junior High School).</p>
+</div>
+<!-- Timeline Item 4 -->
+<div class="relative pl-6 border-l-2 border-transparent">
+<span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-slate-600"></span>
+<div class="text-xs font-mono text-slate-400 mb-1">2014 – 2020</div>
+<h3 class="font-bold text-white text-base">SD IT Ma'had Izzatuna</h3>
+<p class="text-xs text-slate-400 mt-1">Pendidikan Dasar (Elementary School).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SectionAbout -->
+<!-- BEGIN: SectionFlagshipProject (NEURO DAWN & IIIEX 2025 Gold Medal) -->
+<section class="py-24 px-5 sm:px-8 border-t border-slate-900/10 bg-slate-100/50" data-purpose="flagship-project-section" id="project">
+<div class="max-w-[1280px] mx-auto">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+<div>
+<span class="font-mono text-xs font-bold tracking-widest text-[#0057FF] uppercase theme-transition">[ 02 // FEATURED_RESEARCH_&amp;_AWARD ]</span>
+<h2 class="font-display uppercase text-5xl sm:text-7xl text-slate-900 mt-2 tracking-tight">NEURO DAWN</h2>
+</div>
+<div class="font-script text-2xl sm:text-3xl text-[#0057FF] -rotate-2 font-bold theme-transition">
+          International Gold Medalist ✦
+        </div>
+</div>
+<!-- MAIN SHOWCASE UI WINDOW CARD -->
+<div class="bg-[#16181D] rounded-2xl border border-white/10 shadow-custom-card overflow-hidden">
+<!-- Titlebar -->
+<div class="bg-[#1F232B] px-5 py-3.5 flex items-center justify-between border-b border-white/10">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
+<span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+<span class="w-3 h-3 rounded-full bg-[#27C93F]"></span>
+<span class="ml-2 font-mono text-xs text-slate-300">neuro_dawn_v1.0 — Parkinson's Disease Prevention Technology</span>
+</div>
+<span class="bg-emerald-500/20 text-emerald-400 font-mono text-[10px] px-2.5 py-1 rounded border border-emerald-500/30">
+            VERIFIED INVENTION
+          </span>
+</div>
+<!-- Content Grid: Technical Breakdown vs Gold Medal Certificate Card -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10">
+<!-- Technical Breakdown Left Side -->
+<div class="lg:col-span-7 space-y-6">
+<div class="inline-block px-3 py-1 bg-[#0057FF]/20 border border-[#0057FF]/40 text-[#0057FF] rounded font-mono text-[11px] font-bold">
+              BIOTECHNOLOGY • NEURO-MONITORING • PREVENTIVE TECH
+            </div>
+<h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+              Parkinson's Disease Prevention &amp; Neural Stabilization Device
+            </h3>
+<p class="text-sm text-slate-300 leading-relaxed">
+              NEURO DAWN is an innovative biomedical system developed to detect and mitigate Parkinson’s disease early stages through non-invasive neuro-telemetry and micro-current brain stimulation.
+            </p>
+<!-- 2 Core Mechanisms Telemetry Cards -->
+<div class="space-y-4 pt-2">
+<div class="p-4 bg-[#1F232B] rounded-xl border-l-4 border-[#0057FF] border-y border-r border-white/5">
+<h4 class="font-bold text-white text-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                  Brainwave &amp; Dopamine Telemetry:
+                </h4>
+<p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                  A specialized recording module designed to capture and analyze brain activity patterns and dopamine level indicators across meditation, attention/focus, and stress states.
+                </p>
+</div>
+<div class="p-4 bg-[#1F232B] rounded-xl border-l-4 border-emerald-500 border-y border-r border-white/5">
+<h4 class="font-bold text-white text-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  Controlled Electrical Neuro-Stimulation:
+                </h4>
+<p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                  Applies calibrated micro-electrical currents to stimulate targeted brain regions (specifically the <span class="text-emerald-300 font-semibold">substantia nigra</span>) to boost and stabilize dopamine production.
+                </p>
+</div>
+</div>
+<!-- Domain Pill Tags -->
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-2.5 py-1 rounded bg-white/5 text-slate-300 font-mono text-[10px]">#SubstantiaNigra</span>
+<span class="px-2.5 py-1 rounded bg-white/5 text-slate-300 font-mono text-[10px]">#DopamineStabilizer</span>
+<span class="px-2.5 py-1 rounded bg-white/5 text-slate-300 font-mono text-[10px]">#BrainwaveTelemetry</span>
+<span class="px-2.5 py-1 rounded bg-white/5 text-slate-300 font-mono text-[10px]">#HealthTech</span>
+</div>
+</div>
+<!-- Gold Medal Award Certificate Metallic Card Right Side -->
+<div class="lg:col-span-5 bg-gradient-to-br from-[#232731] via-[#1B1E26] to-[#121418] rounded-xl p-6 sm:p-7 border border-amber-500/30 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+<!-- Ambient Glow -->
+<div class="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<div>
+<!-- Gold Badge Ribbon -->
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="text-3xl">🥇</span>
+<div>
+<span class="font-mono text-[10px] text-amber-400 font-bold uppercase tracking-wider block">Award Distinction</span>
+<span class="font-display text-xl text-amber-300 tracking-wide">GOLD MEDAL (MEDALI EMAS)</span>
+</div>
+</div>
+<span class="font-mono text-xs px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded-full font-bold">2025</span>
+</div>
+<!-- Event Details -->
+<div class="space-y-3.5 text-xs text-slate-300 font-sans border-t border-white/10 pt-4">
+<div>
+<p class="font-mono text-[10px] text-slate-400 uppercase">Competition</p>
+<p class="font-bold text-white text-sm">Indonesia International Invention Expo (IIIEX) 2025</p>
+</div>
+<div>
+<p class="font-mono text-[10px] text-slate-400 uppercase">Category &amp; Level</p>
+<p class="text-slate-200">Biotechnology — International Level</p>
+</div>
+<div>
+<p class="font-mono text-[10px] text-slate-400 uppercase">Organizers</p>
+<p class="text-slate-200">Indonesian Young Scientist Association (IYSA) × Universitas Negeri Semarang (UNNES)</p>
+</div>
+</div>
+</div>
+<!-- Brainwave Frequency Schematic Mock Graphic -->
+<div class="mt-6 pt-4 border-t border-white/10">
+<div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mb-2">
+<span>NEURAL TELEMETRY FREQ</span>
+<span class="text-emerald-400">STABLE 40Hz</span>
+</div>
+<!-- Waveform visualization -->
+<div class="h-10 w-full flex items-center gap-1 opacity-70">
+<span class="w-1 bg-amber-400 h-3 rounded-full"></span>
+<span class="w-1 bg-amber-400 h-6 rounded-full"></span>
+<span class="w-1 bg-amber-400 h-8 rounded-full"></span>
+<span class="w-1 bg-blue-500 h-4 rounded-full"></span>
+<span class="w-1 bg-blue-500 h-9 rounded-full"></span>
+<span class="w-1 bg-blue-500 h-5 rounded-full"></span>
+<span class="w-1 bg-emerald-400 h-10 rounded-full"></span>
+<span class="w-1 bg-emerald-400 h-7 rounded-full"></span>
+<span class="w-1 bg-emerald-400 h-4 rounded-full"></span>
+<span class="w-1 bg-amber-400 h-8 rounded-full"></span>
+<span class="w-1 bg-amber-400 h-5 rounded-full"></span>
+<span class="w-1 bg-blue-500 h-9 rounded-full"></span>
+<span class="w-1 bg-blue-500 h-6 rounded-full"></span>
+<span class="w-1 bg-emerald-400 h-4 rounded-full"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SectionFlagshipProject -->
+<!-- BEGIN: SectionSkills (Floating Software Dock & Capabilities) -->
+<section class="py-24 px-5 sm:px-8 border-t border-slate-900/10" data-purpose="skills-section" id="skills">
+<div class="max-w-[1280px] mx-auto">
+<!-- Section Header -->
+<div class="mb-14">
+<span class="font-mono text-xs font-bold tracking-widest text-[#0057FF] uppercase theme-transition">[ 03 // TECH_STACK_&amp;_TOOLKIT ]</span>
+<h2 class="font-display uppercase text-5xl sm:text-7xl text-slate-900 mt-2 tracking-tight">
+          TOOLS &amp; CAPABILITIES
+          <span class="font-script lowercase font-bold text-[#0057FF] block sm:inline sm:ml-4 text-4xl sm:text-6xl theme-transition">logic + motion</span>
+</h2>
+</div>
+<!-- Part 1: Floating Interactive Software App Dock (6 Squircles) -->
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 mb-12">
+<!-- 1. HTML5 -->
+<div class="squircle-badge p-5 bg-[#E34F26] rounded-2xl text-white flex flex-col justify-between h-44 shadow-lg cursor-default">
+<span class="font-mono text-[10px] text-white/80 uppercase">Web Architecture</span>
+<span class="font-display text-4xl">HTML</span>
+<span class="text-xs font-bold">Semantic Foundations</span>
+</div>
+<!-- 2. Competitive Programming -->
+<div class="squircle-badge p-5 bg-[#0057FF] rounded-2xl text-white flex flex-col justify-between h-44 shadow-lg cursor-default">
+<span class="font-mono text-[10px] text-white/80 uppercase">Algorithms</span>
+<span class="font-display text-4xl">CP</span>
+<span class="text-xs font-bold">Data Structures &amp; Logic</span>
+</div>
+<!-- 3. AI -->
+<div class="squircle-badge p-5 bg-[#10A37F] rounded-2xl text-white flex flex-col justify-between h-44 shadow-lg cursor-default">
+<span class="font-mono text-[10px] text-white/80 uppercase">Intelligent Systems</span>
+<span class="font-display text-4xl">AI</span>
+<span class="text-xs font-bold">ML &amp; Model Pipelines</span>
+</div>
+<!-- 4. After Effects -->
+<div class="squircle-badge p-5 bg-[#001E36] border-2 border-[#31A8FF] rounded-2xl text-white flex flex-col justify-between h-44 shadow-lg cursor-default">
+<span class="font-mono text-[10px] text-[#31A8FF] uppercase">Motion Design</span>
+<span class="font-display text-4xl text-[#31A8FF]">Ae</span>
+<span class="text-xs font-bold text-slate-200">VFX &amp; 3D Elements</span>
+</div>
+<!-- 5. Premiere Pro -->
+<div class="squircle-badge p-5 bg-[#140826] border-2 border-[#EA77FF] rounded-2xl text-white flex flex-col justify-between h-44 shadow-lg cursor-default">
+<span class="font-mono text-[10px] text-[#EA77FF] uppercase">Video Production</span>
+<span class="font-display text-4xl text-[#EA77FF]">Pr</span>
+<span class="text-xs font-bold text-slate-200">Advanced Editing</span>
+</div>
+<!-- 6. CapCut -->
+<div class="squircle-badge p-5 bg-[#111111] border border-white/20 rounded-2xl text-white flex flex-col justify-between h-44 shadow-lg cursor-default">
+<span class="font-mono text-[10px] text-slate-400 uppercase">Fast Form</span>
+<span class="font-display text-4xl text-white">CC</span>
+<span class="text-xs font-bold text-slate-300">Fast-Paced Edits</span>
+</div>
+</div>
+<!-- Part 2: Two Column Breakdown (Hard Skills vs Soft Skills UI Window) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+<!-- Left: Hard Skills (Blueprint Card) -->
+<div class="p-6 sm:p-8 bg-white border border-slate-900 rounded-xl shadow-hard-offset">
+<div class="flex items-center justify-between pb-4 border-b border-slate-900/10 mb-6">
+<h3 class="font-mono text-sm font-bold text-slate-900 tracking-wider">HARD SKILLS // TECHNICAL</h3>
+<span class="font-mono text-xs text-[#0057FF]">3 CORE PILLARS</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex items-center gap-3">
+<span class="font-display text-2xl text-[#0057FF]">01.</span>
+<h4 class="font-bold text-slate-900 text-base">Pembuatan Kerangka Web (HTML)</h4>
+</div>
+<p class="text-xs sm:text-sm text-slate-600 mt-1 pl-9">
+                Deep focus on clean semantic markup, accessibility (a11y), responsive structures, and component integration.
+              </p>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<span class="font-display text-2xl text-[#0057FF]">02.</span>
+<h4 class="font-bold text-slate-900 text-base">Competitive Programming</h4>
+</div>
+<p class="text-xs sm:text-sm text-slate-600 mt-1 pl-9">
+                Algorithmic problem-solving, computational optimization, sorting algorithms, and mathematical reasoning.
+              </p>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<span class="font-display text-2xl text-[#0057FF]">03.</span>
+<h4 class="font-bold text-slate-900 text-base">Multimedia &amp; VFX Production</h4>
+</div>
+<p class="text-xs sm:text-sm text-slate-600 mt-1 pl-9">
+                Visual effects compositing in After Effects, color grading, keyframe precision in Premiere Pro, and 3D camera tracker workflows.
+              </p>
+</div>
+</div>
+</div>
+<!-- Right: Soft Skills (Dark UI Window with Glowing Pill Badges) -->
+<div class="bg-[#16181D] rounded-xl border border-white/10 shadow-custom-card overflow-hidden">
+<div class="bg-[#1F232B] px-4 py-3 flex items-center justify-between border-b border-white/10">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
+<span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+<span class="w-3 h-3 rounded-full bg-[#27C93F]"></span>
+<span class="ml-2 font-mono text-xs text-slate-300">soft_skills.config</span>
+</div>
+<span class="font-mono text-[10px] text-sky-400">ACTIVE ROLES</span>
+</div>
+<div class="p-6 sm:p-8 space-y-4">
+<p class="text-xs text-slate-400 font-mono">Competencies honed through leadership, school committee execution, and team competitions:</p>
+<div class="flex flex-wrap gap-2.5">
+<div class="px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#0057FF] hover:bg-[#0057FF]/10 transition-all text-xs font-medium text-slate-200 cursor-default">
+                👑 Kepemimpinan <span class="text-[10px] text-slate-400 block font-mono">Ex-Class President &amp; Dorm Coordinator</span>
+</div>
+<div class="px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#0057FF] hover:bg-[#0057FF]/10 transition-all text-xs font-medium text-slate-200 cursor-default">
+                ⚡ Kemampuan Beradaptasi <span class="text-[10px] text-slate-400 block font-mono">Agile across STEM &amp; Visual Arts</span>
+</div>
+<div class="px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#0057FF] hover:bg-[#0057FF]/10 transition-all text-xs font-medium text-slate-200 cursor-default">
+                🎙 Komunikatif <span class="text-[10px] text-slate-400 block font-mono">Interviewing &amp; Seminar Moderating</span>
+</div>
+<div class="px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#0057FF] hover:bg-[#0057FF]/10 transition-all text-xs font-medium text-slate-200 cursor-default">
+                🤝 Kerjasama Tim <span class="text-[10px] text-slate-400 block font-mono">National Committee Divisions</span>
+</div>
+<div class="px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#0057FF] hover:bg-[#0057FF]/10 transition-all text-xs font-medium text-slate-200 cursor-default">
+                🌐 Bahasa Inggris <span class="text-[10px] text-slate-400 block font-mono">International Competition Presenter</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SectionSkills -->
+<!-- BEGIN: SectionExperience (Leadership & Extracurriculars) -->
+<section class="py-24 px-5 sm:px-8 border-t border-slate-900/10 bg-slate-100/50" data-purpose="experience-log" id="experience">
+<div class="max-w-[1280px] mx-auto">
+<!-- Section Header -->
+<div class="mb-14">
+<span class="font-mono text-xs font-bold tracking-widest text-[#0057FF] uppercase theme-transition">[ 04 // LEADERSHIP_&amp;_COMMITTEES ]</span>
+<h2 class="font-display uppercase text-5xl sm:text-7xl text-slate-900 mt-2 tracking-tight">EXPERIENCE LOG</h2>
+<p class="font-script text-2xl sm:text-3xl text-slate-700 mt-1">Campus, Dormitory &amp; National Events</p>
+</div>
+<!-- 2-Column Grid of Structured Dark UI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1: Re-Organisasi -->
+<div class="bg-[#16181D] rounded-xl p-6 border border-white/10 shadow-custom-card flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+<span class="font-mono text-xs text-sky-400 font-bold bg-sky-500/10 px-2.5 py-0.5 rounded">2025</span>
+<span class="font-mono text-[11px] text-slate-400">MAN Insan Cendekia OKI</span>
+</div>
+<h3 class="font-bold text-white text-base sm:text-lg mb-3">
+              Panitia Penguji / Wawancara Calon Anggota Organisasi
+            </h3>
+<ul class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Berpartisipasi dalam seleksi administrasi dari CV yang telah dibuat calon anggota organisasi.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Mengoordinasikan pelaksanaan ujian tertulis bagi calon anggota organisasi.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Melakukan wawancara langsung untuk mengevaluasi kesiapan mental dan motivasi kandidat.
+              </li>
+</ul>
+</div>
+<div class="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-slate-500">DIVISION: RECRUITMENT &amp; INTERVIEW</div>
+</div>
+<!-- Card 2: ICONIC National Seminar -->
+<div class="bg-[#16181D] rounded-xl p-6 border border-white/10 shadow-custom-card flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+<span class="font-mono text-xs text-sky-400 font-bold bg-sky-500/10 px-2.5 py-0.5 rounded">2025</span>
+<span class="font-mono text-[11px] text-slate-400">ICONIC</span>
+</div>
+<h3 class="font-bold text-white text-base sm:text-lg mb-3">
+              Anggota Divisi Acara Seminar Nasional
+            </h3>
+<ul class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Menentukan dan mengoordinasikan pemilihan lokasi serta jadwal seminar nasional.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Merekrut narasumber kredibel yang relevan sesuai dengan tema dan tujuan kegiatan.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Menyusun runtutan jadwal acara (rundown) secara sistematis dan terstruktur.
+              </li>
+</ul>
+</div>
+<div class="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-slate-500">DIVISION: EVENT OPERATIONS</div>
+</div>
+<!-- Card 3: Health Division Dormitory -->
+<div class="bg-[#16181D] rounded-xl p-6 border border-white/10 shadow-custom-card flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+<span class="font-mono text-xs text-sky-400 font-bold bg-sky-500/10 px-2.5 py-0.5 rounded">2024 – 2025</span>
+<span class="font-mono text-[11px] text-slate-400">Organisasi Keasramaan</span>
+</div>
+<h3 class="font-bold text-white text-base sm:text-lg mb-3">
+              Anggota Divisi Kesehatan
+            </h3>
+<ul class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Membagikan asupan susu kotak dan suplemen vitamin di setiap akhir pekan untuk kesehatan siswa.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Memantau dan mengingatkan terkait kebersihan kamar asrama secara berkala.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Melaksanakan tugas piket Unit Kesehatan Sekolah (UKS) secara terjadwal.
+              </li>
+</ul>
+</div>
+<div class="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-slate-500">DIVISION: HEALTH &amp; SANITATION</div>
+</div>
+<!-- Card 4: Disciplinary Division Dormitory -->
+<div class="bg-[#16181D] rounded-xl p-6 border border-white/10 shadow-custom-card flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+<span class="font-mono text-xs text-sky-400 font-bold bg-sky-500/10 px-2.5 py-0.5 rounded">2023 – 2024</span>
+<span class="font-mono text-[11px] text-slate-400">Organisasi Keasramaan</span>
+</div>
+<h3 class="font-bold text-white text-base sm:text-lg mb-3">
+              Anggota Divisi Kedisiplinan
+            </h3>
+<ul class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Memimpin apel pagi rutin sebelum seluruh siswa bertolak ke kelas.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Menerapkan protokol pengawasan jam penggunaan laptop dan kedisiplinan perangkat.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Mengarahkan siswa dalam melaksanakan ibadah harian dengan sistem presensi tertib.
+              </li>
+</ul>
+</div>
+<div class="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-slate-500">DIVISION: DISCIPLINARY &amp; CODE OF CONDUCT</div>
+</div>
+<!-- Card 5: ICT Programming & Editing -->
+<div class="bg-[#16181D] rounded-xl p-6 border border-white/10 shadow-custom-card flex flex-col justify-between md:col-span-2">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+<span class="font-mono text-xs text-sky-400 font-bold bg-sky-500/10 px-2.5 py-0.5 rounded">2023 – 2024</span>
+<span class="font-mono text-[11px] text-slate-400">Ekstrakurikuler ICT MAN Insan Cendekia OKI</span>
+</div>
+<h3 class="font-bold text-white text-base sm:text-lg mb-3">
+              Divisi Programming dan Editing
+            </h3>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300 font-sans leading-relaxed">
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Mempelajari dasar kerangka web (HTML) dan konstruksi website dasar interaktif.
+              </li>
+<li class="flex items-start gap-2">
+<span class="text-blue-400 font-mono">▸</span>
+                Mendalami teknik advanced video editing, visual effects (VFX), dan elemen 3D dasar.
+              </li>
+</ul>
+</div>
+<div class="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-slate-500">DIVISION: ICT MULTIMEDIA &amp; CODING</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SectionExperience -->
+<!-- BEGIN: SectionConnect (CTRL + CONNECT Workspace Banner) -->
+<section class="py-24 px-5 sm:px-8 border-t border-slate-900/10" data-purpose="contact-section" id="contact">
+<div class="max-w-[1100px] mx-auto">
+<!-- Big Center UI Workspace Card -->
+<div class="bg-[#16181D] text-white rounded-3xl p-8 sm:p-16 border border-white/15 shadow-custom-card text-center relative overflow-hidden">
+<!-- macOS Window Titlebar -->
+<div class="absolute top-4 left-6 flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
+<span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+<span class="w-3 h-3 rounded-full bg-[#27C93F]"></span>
+<span class="ml-2 font-mono text-xs text-slate-400">connect_session.sh</span>
+</div>
+<div class="mt-6 mb-3">
+<span class="font-script text-3xl sm:text-4xl text-[#0057FF] theme-transition font-bold">ready to collaborate?</span>
+</div>
+<h2 class="font-display uppercase text-4xl sm:text-7xl lg:text-8xl tracking-tight text-white mb-6">
+          LET'S BUILD SOMETHING GREAT ✦
+        </h2>
+<p class="max-w-xl mx-auto text-sm sm:text-base text-slate-300 font-sans mb-10 leading-relaxed">
+          Open for web development projects, competitive programming squads, AI research initiatives, and multimedia VFX commissions.
+        </p>
+<!-- Action Buttons Row -->
+<div class="flex flex-wrap items-center justify-center gap-4">
+<!-- Primary Action: Email -->
+<a class="px-6 py-3.5 rounded-lg bg-[#0057FF] hover:bg-blue-600 text-white font-bold text-xs sm:text-sm tracking-wide shadow-accent-glow hover:-translate-y-1 transition-all duration-200 flex items-center gap-2 theme-transition" href="mailto:nadhif.alfatih2008@gmail.com">
+<span>nadhif.alfatih2008@gmail.com</span>
+<span>↗</span>
+</a>
+<!-- WhatsApp Direct -->
+<a class="px-6 py-3.5 rounded-lg bg-[#1F232B] hover:bg-slate-800 text-white border border-white/10 font-semibold text-xs sm:text-sm hover:-translate-y-1 transition-all duration-200 flex items-center gap-2" href="https://wa.me/6282289480199" rel="noopener" target="_blank">
+<span>WhatsApp (+62 822-8948-0199)</span>
+<span>↗</span>
+</a>
+<!-- LinkedIn Profile -->
+<a class="px-6 py-3.5 rounded-lg bg-[#1F232B] hover:bg-slate-800 text-white border border-white/10 font-semibold text-xs sm:text-sm hover:-translate-y-1 transition-all duration-200 flex items-center gap-2" href="https://www.linkedin.com/in/muhammad-nadhif-al-fatih-23a5b9420" rel="noopener" target="_blank">
+<span>LinkedIn Profile</span>
+<span>↗</span>
+</a>
+</div>
+<!-- Location Badge -->
+<div class="mt-12 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 font-mono text-[11px] text-slate-400">
+<span>📍</span> Kota Palembang, Sumatera Selatan (30114) • Institut Teknologi PLN
+        </div>
+</div>
+</div>
+</section>
+<!-- END: SectionConnect -->
+<!-- BEGIN: MainFooter -->
+<footer class="border-t border-slate-900/10 py-8 px-5 sm:px-8 bg-[#F8F9FA]" data-purpose="site-footer">
+<div class="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+<div>
+<p>© 2026 <span class="font-bold text-slate-900">Muhammad Nadhif Al-Fatih</span>. All rights reserved.</p>
+</div>
+<div class="font-mono text-[10px] tracking-wider text-slate-500 uppercase flex items-center gap-3">
+<span>HTML</span>
+<span>•</span>
+<span>AI</span>
+<span>•</span>
+<span>COMPETITIVE PROGRAMMING</span>
+<span>•</span>
+<span>VFX</span>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: Interactive Logic & Parallax Scripts -->
+<script data-purpose="interactive-layers-switcher">
+    // Interactive Layers Switching System in Hero Section
+    document.addEventListener('DOMContentLoaded', () => {
+      const layerButtons = document.querySelectorAll('.layer-row');
+      const root = document.documentElement;
+      const heroScript = document.getElementById('hero-script-tag');
+      const heroHighlight = document.getElementById('hero-tagline-highlight');
+      const statusPill = document.getElementById('status-pill');
+
+      layerButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active state from all buttons
+          layerButtons.forEach(b => {
+            b.classList.remove('active');
+            b.style.borderColor = 'transparent';
+          });
+
+          // Add active state to clicked button
+          btn.classList.add('active');
+          const color = btn.getAttribute('data-color');
+          const scriptText = btn.getAttribute('data-script');
+          const tagline = btn.getAttribute('data-tagline');
+
+          // Smoothly update CSS Variable & elements
+          root.style.setProperty('--accent', color);
+          btn.style.borderColor = color;
+
+          if (heroScript) {
+            heroScript.textContent = scriptText;
+            heroScript.style.color = color;
+          }
+
+          if (heroHighlight) {
+            heroHighlight.style.color = color;
+          }
+
+          if (statusPill) {
+            statusPill.style.backgroundColor = color;
+          }
+        });
+      });
+    });
+  </script>
+<script data-purpose="mouse-parallax-effects">
+    // Subtle Mousemove Parallax on Floating Workspace Elements
+    (function initParallax() {
+      // Respect user's motion preferences
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      const stage = document.getElementById('hero-stage');
+      if (!stage) return;
+
+      const parallaxElements = stage.querySelectorAll('[data-parallax]');
+
+      stage.addEventListener('mousemove', (e) => {
+        const rect = stage.getBoundingClientRect();
+        const mouseX = (e.clientX - rect.left) / rect.width - 0.5;
+        const mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+
+        parallaxElements.forEach(el => {
+          const depth = parseFloat(el.getAttribute('data-parallax')) || 10;
+          const moveX = mouseX * depth;
+          const moveY = mouseY * depth;
+          el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+        });
+      });
+
+      stage.addEventListener('mouseleave', () => {
+        parallaxElements.forEach(el => {
+          el.style.transform = 'translate3d(0px, 0px, 0)';
+          el.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+        });
+      });
+
+      stage.addEventListener('mouseenter', () => {
+        parallaxElements.forEach(el => {
+          el.style.transition = 'none';
+        });
+      });
+    })();
+  </script>
+<!-- END: Interactive Logic & Parallax Scripts -->
+
+
+</body></html>

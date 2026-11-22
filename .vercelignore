@@ -1,0 +1,6 @@
+.aistudio
+.playwright-cli
+.env*
+!.env.example
+node_modules
+dist

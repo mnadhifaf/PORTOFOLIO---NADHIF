@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Anton", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-canvas: #f8f9fa;
+  --color-canvas-pure: #ffffff;
+  --color-ink: #0f1115;
+  --color-panel-dark: #16181d;
+  --color-panel-header: #1f232b;
+  --color-pink-frame: #f4a8e8;
+
+  --shadow-custom-card: 0 24px 48px -12px rgba(15, 17, 21, 0.35), 0 4px 12px -2px rgba(15, 17, 21, 0.12);
+  --shadow-accent-glow: 0 12px 30px rgba(0, 87, 255, 0.28);
+  --shadow-hard-offset: 4px 4px 0px #0f1115;
+}
+
+:root {
+  --canvas: #f8f9fa;
+  --canvas-pure: #ffffff;
+  --ink: #0f1115;
+  --ink-soft: rgba(15, 17, 21, 0.65);
+  --panel-dark: #16181d;
+  --panel-header: #1f232b;
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --accent: #0057ff;
+  --accent-glow: rgba(0, 87, 255, 0.32);
+  --pink-frame: #f4a8e8;
+  --grid-line: rgba(15, 17, 21, 0.055);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  background-color: var(--canvas);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.8) 0%, rgba(248, 249, 250, 0.2) 100%);
+  background-size: 32px 32px, 32px 32px, 100% 100%;
+  color: var(--ink);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.crosshair-mark::before,
+.crosshair-mark::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(15, 17, 21, 0.28);
+}
+
+.crosshair-mark::before {
+  width: 12px;
+  height: 1.5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.crosshair-mark::after {
+  width: 1.5px;
+  height: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.theme-transition {
+  transition:
+    color 0.4s var(--ease),
+    background-color 0.4s var(--ease),
+    border-color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+
+.portrait-mask-fade {
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 68%, rgba(0, 0, 0, 0) 98%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 68%, rgba(0, 0, 0, 0) 98%);
+}
+
+.tilted-preview-frame {
+  transform: rotate(7deg);
+  box-shadow: 0 25px 50px -12px rgba(15, 17, 21, 0.25);
+}
+
+.squircle-badge {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+.squircle-badge:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.32);
+}
+
+.vector-anchor {
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  border: 1.5px solid #0f1115;
+  position: absolute;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
